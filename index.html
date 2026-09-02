@@ -1,0 +1,2420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Computer Parts Learning Game</title>
+
+<style>
+
+/* =====================================================
+   BASIC
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#eef3ff;
+    color:#1f2937;
+    padding-bottom:30px;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+    background:#2563eb;
+    color:white;
+
+    padding:13px 20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    box-shadow:0 3px 10px #aaa;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.navbar h2{
+    margin:0;
+    font-size:21px;
+}
+
+.nav-buttons{
+
+    display:flex;
+
+    gap:7px;
+}
+
+.nav-buttons button{
+
+    padding:8px 13px;
+
+    border:0;
+
+    border-radius:7px;
+
+    background:white;
+
+    color:#2563eb;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.nav-buttons button:hover{
+    background:#dbeafe;
+}
+
+
+/* =====================================================
+   PAGE SYSTEM
+===================================================== */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+
+/* =====================================================
+   STUDENT REGISTRATION
+===================================================== */
+
+.registration{
+
+    width:min(430px,94%);
+
+    margin:45px auto;
+
+    background:white;
+
+    padding:28px;
+
+    border-radius:18px;
+
+    box-shadow:0 5px 20px #ccc;
+
+    text-align:center;
+}
+
+.registration h1{
+
+    margin:0 0 8px;
+
+    font-size:27px;
+}
+
+.registration p{
+
+    color:#666;
+
+    margin-bottom:20px;
+}
+
+.registration input{
+
+    width:100%;
+
+    padding:13px;
+
+    margin:7px 0;
+
+    border:2px solid #d1d5db;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    outline:none;
+}
+
+.registration input:focus{
+
+    border-color:#2563eb;
+}
+
+
+.main-button{
+
+    width:100%;
+
+    padding:13px;
+
+    margin-top:12px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.main-button:hover{
+    background:#174bb5;
+}
+
+#registerMessage{
+
+    min-height:25px;
+
+    margin-top:12px;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.dashboard{
+
+    width:min(1100px,96%);
+
+    margin:25px auto;
+}
+
+.dashboard-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:20px;
+}
+
+.dashboard-header h1{
+
+    margin:0;
+
+    font-size:28px;
+}
+
+.clear-button{
+
+    padding:10px 15px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:#dc2626;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.clear-button:hover{
+    background:#b91c1c;
+}
+
+
+/* =====================================================
+   DASHBOARD STATS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.stat-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:13px;
+
+    box-shadow:0 4px 12px #ccc;
+
+    text-align:center;
+}
+
+.stat-icon{
+
+    font-size:28px;
+}
+
+.stat-number{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#2563eb;
+
+    margin-top:4px;
+}
+
+.stat-title{
+
+    color:#666;
+
+    margin-top:4px;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-container{
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    box-shadow:0 3px 10px #ddd;
+
+    margin-bottom:15px;
+}
+
+.search-container input{
+
+    width:100%;
+
+    padding:12px;
+
+    border:2px solid #ddd;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    outline:none;
+}
+
+.search-container input:focus{
+
+    border-color:#2563eb;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-container{
+
+    background:white;
+
+    border-radius:12px;
+
+    box-shadow:0 4px 12px #ccc;
+
+    overflow-x:auto;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:700px;
+}
+
+th{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:13px;
+
+    text-align:left;
+}
+
+td{
+
+    padding:12px;
+
+    border-bottom:1px solid #eee;
+}
+
+tr:hover td{
+
+    background:#f5f8ff;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-playing{
+
+    color:#d97706;
+
+    font-weight:bold;
+}
+
+.status-completed{
+
+    color:#16a34a;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+.delete-btn{
+
+    border:0;
+
+    padding:7px 11px;
+
+    background:#dc2626;
+
+    color:white;
+
+    border-radius:6px;
+
+    cursor:pointer;
+}
+
+.delete-btn:hover{
+
+    background:#b91c1c;
+}
+
+
+/* =====================================================
+   GAME
+===================================================== */
+
+.game-container{
+
+    width:min(850px,96%);
+
+    margin:auto;
+
+    text-align:center;
+
+    padding-top:20px;
+}
+
+.game-container h1{
+
+    margin:10px 0 5px;
+
+    font-size:29px;
+}
+
+.instruction{
+
+    margin:5px;
+
+    font-size:17px;
+}
+
+#currentStudent{
+
+    display:inline-block;
+
+    margin:10px auto;
+
+    padding:8px 14px;
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
+    border-radius:20px;
+
+    font-weight:bold;
+}
+
+#score{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin:10px;
+}
+
+
+/* =====================================================
+   COMPUTER IMAGE
+===================================================== */
+
+.top-image{
+
+    width:min(650px,90%);
+
+    margin:15px auto;
+}
+
+.top-image img{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:12px;
+}
+
+
+/* =====================================================
+   DRAGGABLE PARTS
+===================================================== */
+
+.parts{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    width:min(700px,95%);
+
+    margin:18px auto;
+}
+
+.part-box{
+
+    width:120px;
+
+    height:95px;
+
+    background:white;
+
+    border:2px solid #2563eb;
+
+    border-radius:10px;
+
+    padding:5px;
+
+    box-shadow:0 3px 8px #bbb;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+.part{
+
+    width:105px;
+
+    height:80px;
+
+    object-fit:contain;
+
+    cursor:grab;
+
+    user-select:none;
+}
+
+.part:active{
+
+    cursor:grabbing;
+}
+
+
+/* =====================================================
+   COMPUTER SETUP
+===================================================== */
+
+.computer-setup{
+
+    position:relative;
+
+    width:min(700px,94%);
+
+    height:400px;
+
+    margin:25px auto;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #dbeafe 0%,
+        #bfdbfe 72%,
+        #a9784d 72%,
+        #9a6a43 100%
+    );
+
+    border:3px solid #2563eb;
+
+    border-radius:18px;
+
+    box-shadow:0 6px 15px #aaa;
+
+    overflow:hidden;
+}
+
+
+/* =====================================================
+   MONITOR DROP
+===================================================== */
+
+.setup-monitor{
+
+    position:absolute;
+
+    width:300px;
+
+    height:165px;
+
+    left:50%;
+
+    top:22px;
+
+    transform:translateX(-50%);
+
+    background:#fff;
+
+    border:6px solid #374151;
+
+    border-radius:9px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#777;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    z-index:2;
+
+    box-shadow:0 5px 10px #777;
+}
+
+
+/* =====================================================
+   MONITOR STAND
+===================================================== */
+
+.monitor-stand{
+
+    position:absolute;
+
+    width:55px;
+
+    height:32px;
+
+    left:50%;
+
+    top:187px;
+
+    transform:translateX(-50%);
+
+    background:#374151;
+
+    border-radius:0 0 6px 6px;
+
+    z-index:1;
+}
+
+
+/* =====================================================
+   CPU
+===================================================== */
+
+.setup-cpu{
+
+    position:absolute;
+
+    width:85px;
+
+    height:125px;
+
+    left:45px;
+
+    bottom:35px;
+
+    background:#e5e7eb;
+
+    border:4px solid #374151;
+
+    border-radius:8px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#777;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    z-index:3;
+
+    box-shadow:0 5px 10px #777;
+}
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+.setup-keyboard{
+
+    position:absolute;
+
+    width:250px;
+
+    height:65px;
+
+    left:50%;
+
+    bottom:35px;
+
+    transform:translateX(-50%);
+
+    background:#f3f4f6;
+
+    border:4px solid #374151;
+
+    border-radius:9px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#777;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    z-index:3;
+
+    box-shadow:0 5px 9px #777;
+}
+
+
+/* =====================================================
+   MOUSE
+===================================================== */
+
+.setup-mouse{
+
+    position:absolute;
+
+    width:55px;
+
+    height:75px;
+
+    right:45px;
+
+    bottom:30px;
+
+    background:#f3f4f6;
+
+    border:4px solid #374151;
+
+    border-radius:30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#777;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    z-index:3;
+
+    box-shadow:0 5px 9px #777;
+}
+
+
+/* =====================================================
+   DROP
+===================================================== */
+
+.drop{
+
+    transition:.2s;
+}
+
+.drop:hover{
+
+    background:#eff6ff;
+}
+
+.drop img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    border-radius:5px;
+}
+
+.drop.correct{
+
+    border-color:#16a34a;
+
+    background:#dcfce7;
+
+    box-shadow:
+    0 0 0 3px #86efac,
+    0 5px 12px #555;
+}
+
+.drop.wrong{
+
+    border-color:#dc2626;
+
+    background:#fee2e2;
+
+    animation:shake .3s;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes shake{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-6px);
+    }
+
+    50%{
+        transform:translateX(6px);
+    }
+
+    75%{
+        transform:translateX(-6px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+#message{
+
+    min-height:30px;
+
+    margin:10px;
+
+    font-size:18px;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.game-button{
+
+    padding:10px 22px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+}
+
+.game-button:hover{
+
+    background:#174bb5;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:700px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:10px;
+    }
+
+    .navbar h2{
+
+        font-size:19px;
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+    }
+
+    .computer-setup{
+
+        height:360px;
+    }
+
+    .setup-monitor{
+
+        width:260px;
+
+        height:145px;
+
+        top:20px;
+    }
+
+    .monitor-stand{
+
+        top:165px;
+    }
+
+    .setup-cpu{
+
+        width:75px;
+
+        height:110px;
+
+        left:30px;
+
+        bottom:30px;
+    }
+
+    .setup-keyboard{
+
+        width:220px;
+
+        height:58px;
+
+        bottom:30px;
+    }
+
+    .setup-mouse{
+
+        width:50px;
+
+        height:68px;
+
+        right:30px;
+
+        bottom:25px;
+    }
+
+    .part-box{
+
+        width:105px;
+
+        height:85px;
+    }
+
+    .part{
+
+        width:92px;
+
+        height:70px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:500px){
+
+    .navbar{
+
+        padding:10px;
+    }
+
+    .nav-buttons{
+
+        width:100%;
+
+        justify-content:center;
+    }
+
+    .nav-buttons button{
+
+        font-size:12px;
+
+        padding:7px 9px;
+    }
+
+    .registration{
+
+        margin:30px auto;
+
+        padding:22px;
+    }
+
+    .registration h1{
+
+        font-size:23px;
+    }
+
+    .dashboard{
+
+        width:94%;
+    }
+
+    .dashboard-header h1{
+
+        font-size:23px;
+    }
+
+    .game-container h1{
+
+        font-size:23px;
+    }
+
+    .instruction{
+
+        font-size:14px;
+    }
+
+    .parts{
+
+        gap:7px;
+
+        margin:12px auto;
+    }
+
+    .part-box{
+
+        width:82px;
+
+        height:70px;
+
+        padding:3px;
+    }
+
+    .part{
+
+        width:72px;
+
+        height:60px;
+    }
+
+    .computer-setup{
+
+        width:94%;
+
+        height:300px;
+
+        margin:18px auto;
+    }
+
+    .setup-monitor{
+
+        width:190px;
+
+        height:105px;
+
+        top:15px;
+
+        border-width:4px;
+
+        font-size:10px;
+    }
+
+    .monitor-stand{
+
+        width:35px;
+
+        height:20px;
+
+        top:120px;
+    }
+
+    .setup-cpu{
+
+        width:58px;
+
+        height:85px;
+
+        left:15px;
+
+        bottom:22px;
+
+        border-width:3px;
+
+        font-size:9px;
+    }
+
+    .setup-keyboard{
+
+        width:155px;
+
+        height:43px;
+
+        bottom:22px;
+
+        border-width:3px;
+
+        font-size:9px;
+    }
+
+    .setup-mouse{
+
+        width:40px;
+
+        height:55px;
+
+        right:15px;
+
+        bottom:18px;
+
+        border-width:3px;
+
+        font-size:7px;
+    }
+
+    #message{
+
+        font-size:16px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width:360px){
+
+    .part-box{
+
+        width:72px;
+
+        height:62px;
+    }
+
+    .part{
+
+        width:63px;
+
+        height:53px;
+    }
+
+    .computer-setup{
+
+        height:270px;
+    }
+
+    .setup-monitor{
+
+        width:170px;
+
+        height:95px;
+    }
+
+    .monitor-stand{
+
+        top:108px;
+    }
+
+    .setup-cpu{
+
+        width:52px;
+
+        height:75px;
+
+        left:10px;
+    }
+
+    .setup-keyboard{
+
+        width:140px;
+
+        height:40px;
+    }
+
+    .setup-mouse{
+
+        width:36px;
+
+        height:50px;
+
+        right:10px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<div class="navbar">
+
+    <h2>🖥️ Computer Parts Game</h2>
+
+    <div class="nav-buttons">
+
+        <button onclick="showPage('registerPage')">
+            👨‍🎓 Register
+        </button>
+
+        <button onclick="showPage('gamePage')">
+            🎮 Game
+        </button>
+
+        <button onclick="showPage('dashboardPage')">
+            📊 Dashboard
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     STUDENT REGISTRATION PAGE
+===================================================== -->
+
+<div
+    id="registerPage"
+    class="page active"
+>
+
+    <div class="registration">
+
+        <h1>👨‍🎓 Student Registration</h1>
+
+        <p>
+            Enter your Name and Roll Number.
+        </p>
+
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Enter Student Name"
+        >
+
+
+        <input
+            type="text"
+            id="rollNo"
+            placeholder="Enter Roll Number"
+        >
+
+
+        <button
+            class="main-button"
+            onclick="registerStudent()"
+        >
+            Register & Start Game
+        </button>
+
+
+        <div id="registerMessage"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     DASHBOARD PAGE
+===================================================== -->
+
+<div
+    id="dashboardPage"
+    class="page"
+>
+
+    <div class="dashboard">
+
+
+        <!-- HEADER -->
+
+        <div class="dashboard-header">
+
+            <h1>
+                📊 Teacher Dashboard
+            </h1>
+
+
+            <button
+                class="clear-button"
+                onclick="clearAllStudents()"
+            >
+                🗑️ Clear All Students
+            </button>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👨‍🎓
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="totalStudents"
+                >
+                    0
+                </div>
+
+                <div class="stat-title">
+                    Total Students
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🕐
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="todayStudents"
+                >
+                    0
+                </div>
+
+                <div class="stat-title">
+                    Registered Today
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏆
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="gameCompleted"
+                >
+                    0
+                </div>
+
+                <div class="stat-title">
+                    Game Completed
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-container">
+
+            <input
+                type="text"
+                id="searchStudent"
+                placeholder="🔍 Search Student Name or Roll Number..."
+                oninput="displayStudents()"
+            >
+
+        </div>
+
+
+        <!-- STUDENT TABLE -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>No.</th>
+
+                        <th>Student Name</th>
+
+                        <th>Roll No.</th>
+
+                        <th>Registration Time</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="studentTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     GAME PAGE
+===================================================== -->
+
+<div
+    id="gamePage"
+    class="page"
+>
+
+    <div class="game-container">
+
+
+        <h1>
+            🖥️ Computer Parts Game
+        </h1>
+
+
+        <p class="instruction">
+            Drag each computer part to the correct place.
+        </p>
+
+
+        <div id="currentStudent">
+            Student: Not Registered
+        </div>
+
+
+        <div id="score">
+            Score: 0 / 4
+        </div>
+
+
+        <!-- COMPUTER IMAGE -->
+
+        <div class="top-image">
+
+            <img
+                src="computer.png"
+                alt="Computer"
+            >
+
+        </div>
+
+
+        <!-- DRAGGABLE PARTS -->
+
+        <div class="parts">
+
+
+            <!-- MONITOR -->
+
+            <div class="part-box">
+
+                <img
+                    src="monitor.png"
+                    class="part"
+                    draggable="true"
+                    data-part="monitor"
+                    alt="Monitor"
+                >
+
+            </div>
+
+
+            <!-- CPU -->
+
+            <div class="part-box">
+
+                <img
+                    src="cpu.png"
+                    class="part"
+                    draggable="true"
+                    data-part="cpu"
+                    alt="CPU"
+                >
+
+            </div>
+
+
+            <!-- KEYBOARD -->
+
+            <div class="part-box">
+
+                <img
+                    src="keyboard.png"
+                    class="part"
+                    draggable="true"
+                    data-part="keyboard"
+                    alt="Keyboard"
+                >
+
+            </div>
+
+
+            <!-- MOUSE -->
+
+            <div class="part-box">
+
+                <img
+                    src="mouse.png"
+                    class="part"
+                    draggable="true"
+                    data-part="mouse"
+                    alt="Mouse"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <!-- COMPUTER SETUP -->
+
+        <div class="computer-setup">
+
+
+            <!-- MONITOR -->
+
+            <div
+                class="drop setup-monitor"
+                data-answer="monitor"
+            >
+                Place Monitor
+            </div>
+
+
+            <!-- MONITOR STAND -->
+
+            <div class="monitor-stand"></div>
+
+
+            <!-- CPU -->
+
+            <div
+                class="drop setup-cpu"
+                data-answer="cpu"
+            >
+                CPU
+            </div>
+
+
+            <!-- KEYBOARD -->
+
+            <div
+                class="drop setup-keyboard"
+                data-answer="keyboard"
+            >
+                Keyboard
+            </div>
+
+
+            <!-- MOUSE -->
+
+            <div
+                class="drop setup-mouse"
+                data-answer="mouse"
+            >
+                Mouse
+            </div>
+
+
+        </div>
+
+
+        <div id="message"></div>
+
+
+        <button
+            class="game-button"
+            onclick="restartGame()"
+        >
+            🔄 Restart Game
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   STUDENT DATABASE
+===================================================== */
+
+let students =
+    JSON.parse(
+        localStorage.getItem(
+            "computerGameStudents"
+        )
+    ) || [];
+
+
+let currentStudentId = null;
+
+
+/* =====================================================
+   GAME VARIABLES
+===================================================== */
+
+let score = 0;
+
+
+/* =====================================================
+   SHOW PAGE
+===================================================== */
+
+function showPage(pageId){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    document
+    .getElementById(pageId)
+    .classList.add("active");
+
+
+    if(pageId === "dashboardPage"){
+
+        displayStudents();
+
+    }
+
+}
+
+
+/* =====================================================
+   REGISTER STUDENT
+===================================================== */
+
+function registerStudent(){
+
+    let name =
+        document
+        .getElementById("studentName")
+        .value
+        .trim();
+
+
+    let roll =
+        document
+        .getElementById("rollNo")
+        .value
+        .trim();
+
+
+    let message =
+        document
+        .getElementById("registerMessage");
+
+
+    /* Validation */
+
+    if(name === "" || roll === ""){
+
+        message.style.color = "red";
+
+        message.innerText =
+            "❌ Please enter Name and Roll Number.";
+
+        return;
+
+    }
+
+
+    /* Duplicate roll */
+
+    let duplicate =
+        students.find(function(student){
+
+            return student.roll.toLowerCase()
+                === roll.toLowerCase();
+
+        });
+
+
+    if(duplicate){
+
+        message.style.color = "red";
+
+        message.innerText =
+            "❌ This Roll Number is already registered.";
+
+        return;
+
+    }
+
+
+    /* Create student */
+
+    let student = {
+
+        id:Date.now(),
+
+        name:name,
+
+        roll:roll,
+
+        date:new Date().toLocaleString(),
+
+        completed:false
+
+    };
+
+
+    /* Save */
+
+    students.push(student);
+
+
+    localStorage.setItem(
+        "computerGameStudents",
+        JSON.stringify(students)
+    );
+
+
+    /* Current student */
+
+    currentStudentId =
+        student.id;
+
+
+    /* Reset game */
+
+    restartGame();
+
+
+    /* Show current student */
+
+    document
+    .getElementById("currentStudent")
+    .innerText =
+        "👨‍🎓 "
+        + name
+        + " | Roll No: "
+        + roll;
+
+
+    /* Success */
+
+    message.style.color = "green";
+
+    message.innerText =
+        "✅ Registration successful!";
+
+
+    /* Clear inputs */
+
+    document
+    .getElementById("studentName")
+    .value = "";
+
+    document
+    .getElementById("rollNo")
+    .value = "";
+
+
+    /* Open game */
+
+    setTimeout(function(){
+
+        showPage("gamePage");
+
+    },500);
+
+}
+
+
+/* =====================================================
+   DISPLAY STUDENTS
+===================================================== */
+
+function displayStudents(){
+
+    let table =
+        document.getElementById(
+            "studentTable"
+        );
+
+
+    let search =
+        document
+        .getElementById(
+            "searchStudent"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    table.innerHTML = "";
+
+
+    let filtered =
+        students.filter(function(student){
+
+            return (
+
+                student.name
+                .toLowerCase()
+                .includes(search)
+
+                ||
+
+                student.roll
+                .toLowerCase()
+                .includes(search)
+
+            );
+
+        });
+
+
+    /* No students */
+
+    if(filtered.length === 0){
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    style="
+                        text-align:center;
+                        padding:25px;
+                    "
+                >
+                    👨‍🎓 No students registered yet.
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+
+    /* Students */
+
+    filtered.forEach(function(student,index){
+
+        let row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>
+                ${index + 1}
+            </td>
+
+            <td>
+                <strong>
+                    ${escapeHTML(student.name)}
+                </strong>
+            </td>
+
+            <td>
+                ${escapeHTML(student.roll)}
+            </td>
+
+            <td>
+                ${student.date}
+            </td>
+
+            <td>
+
+                ${
+                    student.completed
+
+                    ?
+
+                    '<span class="status-completed">✅ Completed</span>'
+
+                    :
+
+                    '<span class="status-playing">⏳ Playing</span>'
+                }
+
+            </td>
+
+            <td>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteStudent(${student.id})"
+                >
+                    Delete
+                </button>
+
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+
+    /* Total */
+
+    document
+    .getElementById("totalStudents")
+    .innerText =
+        students.length;
+
+
+    /* Today's students */
+
+    let today =
+        new Date().toLocaleDateString();
+
+
+    let todayCount =
+        students.filter(function(student){
+
+            return student.date.includes(today);
+
+        }).length;
+
+
+    document
+    .getElementById("todayStudents")
+    .innerText =
+        todayCount;
+
+
+    /* Completed */
+
+    let completed =
+        students.filter(function(student){
+
+            return student.completed === true;
+
+        }).length;
+
+
+    document
+    .getElementById("gameCompleted")
+    .innerText =
+        completed;
+
+}
+
+
+/* =====================================================
+   DELETE STUDENT
+===================================================== */
+
+function deleteStudent(id){
+
+    let answer =
+        confirm(
+            "Are you sure you want to delete this student?"
+        );
+
+
+    if(!answer){
+
+        return;
+
+    }
+
+
+    students =
+        students.filter(function(student){
+
+            return student.id !== id;
+
+        });
+
+
+    localStorage.setItem(
+        "computerGameStudents",
+        JSON.stringify(students)
+    );
+
+
+    displayStudents();
+
+}
+
+
+/* =====================================================
+   CLEAR ALL STUDENTS
+===================================================== */
+
+function clearAllStudents(){
+
+    if(students.length === 0){
+
+        alert(
+            "There are no students to delete."
+        );
+
+        return;
+
+    }
+
+
+    let answer =
+        confirm(
+            "Are you sure you want to delete ALL student data?"
+        );
+
+
+    if(!answer){
+
+        return;
+
+    }
+
+
+    students = [];
+
+
+    localStorage.removeItem(
+        "computerGameStudents"
+    );
+
+
+    displayStudents();
+
+}
+
+
+/* =====================================================
+   SAFE TEXT
+===================================================== */
+
+function escapeHTML(text){
+
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   DRAG START
+===================================================== */
+
+document
+.querySelectorAll(".part")
+.forEach(function(part){
+
+    part.addEventListener(
+        "dragstart",
+        function(event){
+
+            event.dataTransfer.setData(
+                "part",
+                part.dataset.part
+            );
+
+        }
+    );
+
+});
+
+
+/* =====================================================
+   DROP AREAS
+===================================================== */
+
+document
+.querySelectorAll(".drop")
+.forEach(function(box){
+
+
+    /* Allow drop */
+
+    box.addEventListener(
+        "dragover",
+        function(event){
+
+            event.preventDefault();
+
+        }
+    );
+
+
+    /* Drop */
+
+    box.addEventListener(
+        "drop",
+        function(event){
+
+            event.preventDefault();
+
+
+            let draggedPart =
+                event.dataTransfer.getData(
+                    "part"
+                );
+
+
+            let correctPart =
+                box.dataset.answer;
+
+
+            /* ================================
+               CORRECT
+            ================================= */
+
+            if(
+                draggedPart === correctPart
+                &&
+                !box.classList.contains("correct")
+            ){
+
+                score++;
+
+
+                box.classList.add(
+                    "correct"
+                );
+
+
+                /* Show PNG */
+
+                box.innerHTML = `
+
+                    <img
+                        src="${draggedPart}.png"
+                        alt="${draggedPart}"
+                    >
+
+                `;
+
+
+                /* Update score */
+
+                document
+                .getElementById("score")
+                .innerText =
+                    "Score: "
+                    + score
+                    + " / 4";
+
+
+                /* Message */
+
+                document
+                .getElementById("message")
+                .innerText =
+                    "✅ Correct!";
+
+
+                /* Hide original */
+
+                let original =
+                    document.querySelector(
+                        '.part[data-part="' +
+                        draggedPart +
+                        '"]'
+                    );
+
+
+                if(original){
+
+                    original
+                    .parentElement
+                    .style.visibility =
+                        "hidden";
+
+                }
+
+
+                /* ================================
+                   COMPLETE
+                ================================= */
+
+                if(score === 4){
+
+                    document
+                    .getElementById("message")
+                    .innerText =
+                        "🎉 Excellent! Game Completed!";
+
+
+                    /* Save status */
+
+                    if(
+                        currentStudentId !== null
+                    ){
+
+                        let student =
+                            students.find(
+                                function(s){
+
+                                    return (
+                                        s.id ===
+                                        currentStudentId
+                                    );
+
+                                }
+                            );
+
+
+                        if(student){
+
+                            student.completed =
+                                true;
+
+
+                            localStorage.setItem(
+                                "computerGameStudents",
+                                JSON.stringify(
+                                    students
+                                )
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+
+            /* ================================
+               WRONG
+            ================================= */
+
+            else{
+
+                box.classList.add(
+                    "wrong"
+                );
+
+
+                document
+                .getElementById("message")
+                .innerText =
+                    "❌ Wrong place! Try again.";
+
+
+                setTimeout(function(){
+
+                    box.classList.remove(
+                        "wrong"
+                    );
+
+                },600);
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =====================================================
+   RESTART GAME
+===================================================== */
+
+function restartGame(){
+
+    score = 0;
+
+
+    document
+    .getElementById("score")
+    .innerText =
+        "Score: 0 / 4";
+
+
+    document
+    .getElementById("message")
+    .innerText = "";
+
+
+    /* Reset drop areas */
+
+    document
+    .querySelectorAll(".drop")
+    .forEach(function(box){
+
+        box.classList.remove(
+            "correct"
+        );
+
+        box.classList.remove(
+            "wrong"
+        );
+
+
+        let name =
+            box.dataset.answer;
+
+
+        if(name === "monitor"){
+
+            box.innerHTML =
+                "Place Monitor";
+
+        }
+
+        else{
+
+            box.innerHTML =
+                name.charAt(0).toUpperCase()
+                +
+                name.slice(1);
+
+        }
+
+    });
+
+
+    /* Show all original parts */
+
+    document
+    .querySelectorAll(".part-box")
+    .forEach(function(box){
+
+        box.style.visibility =
+            "visible";
+
+    });
+
+}
+
+
+/* =====================================================
+   INITIAL DASHBOARD
+===================================================== */
+
+displayStudents();
+
+</script>
+
+
+</body>
+
+</html>
